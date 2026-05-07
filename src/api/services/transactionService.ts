@@ -1,32 +1,23 @@
-import { asc, count, desc } from "drizzle-orm";
-import { db } from "@/api/database";
-import { transactions } from "@/api/database/schema";
-import { buildWhere, sortByToColumn } from "../utils/helper";
-import type { GetTransactionsResponseDto, QueryParamsDto } from "./dto";
+import type { GetTransactionsResponseDto, QueryParamsDto } from "@/api/services/dto";
+import { findTransactionsPaged } from "@/api/database/transactionRepository";
+import { validateTransactionQueryParams } from "@/api/utils/transactionValidator";
 
-
-
-
-export async function getTransactions(params: QueryParamsDto): Promise<GetTransactionsResponseDto> {
-  const where = buildWhere(params?.filter);
-  const orderBy = params?.sortDir === "asc" ? asc(sortByToColumn[params?.sortBy]) : desc(sortByToColumn[params?.sortBy]);
-
-  const [items, totalRows] = await Promise.all([
-    db
-      .select()
-      .from(transactions)
-      .where(where)
-      .orderBy(orderBy)
-      .limit(params?.limit)
-      .offset(params?.offset),
-    db.select({ total: count() }).from(transactions).where(where),
-  ]);
-
-  return {
-    items,
-    total: totalRows[0]?.total ?? 0,
-    limit: params?.limit,
-    offset: params?.offset,
-  };
+async function fetchPaged(params: QueryParamsDto): Promise<GetTransactionsResponseDto> {
+  try {
+    return await findTransactionsPaged(params);
+  } catch (cause) {
+    if (cause instanceof Error) throw cause;
+    throw new Error(String(cause));
+  }
 }
 
+export async function listTransactions(params: QueryParamsDto): Promise<GetTransactionsResponseDto> {
+  return fetchPaged(params);
+}
+
+export async function listTransactionsFromSearchParams(
+  searchParams: URLSearchParams,
+): Promise<GetTransactionsResponseDto> {
+  const params = validateTransactionQueryParams(searchParams);
+  return fetchPaged(params);
+}

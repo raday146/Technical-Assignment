@@ -19,3 +19,4 @@ export type TransactionFilter = {
   dateTo?: number | Date;
 };
 export  type SortDirection =  "asc" | "desc";
+export type TransactionsSortBy = "date" | "method";

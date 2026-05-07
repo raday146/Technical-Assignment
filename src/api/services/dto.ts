@@ -10,7 +10,7 @@ export interface GetTransactionsResponseDto {
 }
 
 export interface QueryParamsDto{
-limit: number;
+  limit: number;
   offset: number;
   sortBy: TransactionSortBy;
   sortDir: SortDirection;
