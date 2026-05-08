@@ -1,8 +1,7 @@
-# 🚀 Bloxtax Explorer
 
 **High-performance crypto transaction management with real-time sync and optimized financial UX.**
 
-Bloxtax is a professional-grade dashboard designed to track and manage crypto transactions across multiple networks. This project focuses on data integrity, layout stability, and a seamless user experience.
+a professional-grade dashboard designed to track and manage crypto transactions across multiple networks. This project focuses on data integrity, layout stability, and a seamless user experience.
 
 ---
 
