@@ -4,24 +4,6 @@ import type { SortDirection, TransactionFilter, TransactionSortBy } from "@/api/
 import { DEFAULT_LIMIT, MIN_LIMIT, MAX_LIMIT, MAX_OFFSET, SORT_WHITELIST } from "./constants";
 
 
-/** Validates URLSearchParams and returns a typed query DTO (single parse path). */
-export function validateTransactionQueryParams(searchParams: URLSearchParams): QueryParamsDto {
-  const limit = parseLimit(searchParams);
-  const offset = parseOffset(searchParams);
-  const sortBy = parseSortBy(searchParams.get("sortBy"));
-  const sortDir = parseSortDir(searchParams.get("sortDir"));
-  const dateFrom = parseOptionalMsTimestamp(searchParams.get("dateFrom"), "dateFrom");
-  const dateTo = parseOptionalMsTimestamp(searchParams.get("dateTo"), "dateTo");
-  const filter = buildFilter(
-    searchParams.get("q"),
-    searchParams.get("method"),
-    searchParams.get("network"),
-    dateFrom,
-    dateTo,
-  );
-
-  return { limit, offset, sortBy, sortDir, filter };
-}
 
 function parseIntParam(raw: string | null): number | undefined {
   if (raw == null || raw === "") return undefined;
@@ -91,5 +73,23 @@ function buildFilter(
     network: networkRaw || undefined,
     dateFrom,
     dateTo,
-};
+  };
+}
+/** Validates URLSearchParams and returns a typed query DTO (single parse path). */
+export function validateTransactionQueryParams(searchParams: URLSearchParams): QueryParamsDto {
+  const limit = parseLimit(searchParams);
+  const offset = parseOffset(searchParams);
+  const sortBy = parseSortBy(searchParams.get("sortBy"));
+  const sortDir = parseSortDir(searchParams.get("sortDir"));
+  const dateFrom = parseOptionalMsTimestamp(searchParams.get("dateFrom"), "dateFrom");
+  const dateTo = parseOptionalMsTimestamp(searchParams.get("dateTo"), "dateTo");
+  const filter = buildFilter(
+    searchParams.get("q"),
+    searchParams.get("method"),
+    searchParams.get("network"),
+    dateFrom,
+    dateTo,
+  );
+
+  return { limit, offset, sortBy, sortDir, filter };
 }
