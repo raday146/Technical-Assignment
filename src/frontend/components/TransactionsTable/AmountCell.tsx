@@ -12,6 +12,8 @@ export function AmountCell({
     tone: "buy" | "sell" | "fee";
   }) {
     const amountText = dashIfEmpty(formatNumber(amount));
+    // Token shown always when present; currency only shown when different.
+    // e.g. "USDC (ERC20)" or "USDC" when currency === token.
     const tokenText = assetLabel(token, currency);
     const amountClass =
       tone === "buy"

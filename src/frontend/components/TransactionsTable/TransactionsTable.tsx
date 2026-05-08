@@ -259,6 +259,9 @@ export function TransactionsTable() {
                 <Table>
                   <TableHeader className="bg-muted/40">
                     <TableRow className="border-border/50">
+                      <TableHead className="w-[80px] px-6 whitespace-nowrap text-muted-foreground">
+                        ID
+                      </TableHead>
                       <TableHead className="w-[220px] px-6 whitespace-nowrap">
                         <Button
                           variant="ghost"
@@ -288,12 +291,15 @@ export function TransactionsTable() {
                       <TableHead className="px-6 whitespace-nowrap min-w-[240px]">Route</TableHead>
                       <TableHead className="px-6 whitespace-nowrap min-w-[180px]">Contract</TableHead>
                       <TableHead className="px-6 whitespace-nowrap min-w-[220px]">Blockchain ID</TableHead>
-                      <TableHead className="px-6 whitespace-nowrap min-w-[240px]">Notes</TableHead>
+                      <TableHead className="px-6 whitespace-nowrap min-w-[240px]">Comments/Notes</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {data.map((t) => (
                       <TableRow key={t.id} className="h-12 border-border/50 hover:bg-muted/50">
+                        <TableCell className="px-6 whitespace-nowrap font-mono text-xs text-muted-foreground">
+                          #{t.id}
+                        </TableCell>
                         <TableCell className="text-xs text-muted-foreground whitespace-nowrap px-6">
                           {formatDate(t.date)}
                         </TableCell>
