@@ -1,8 +1,8 @@
-# 🚀 Bloxtax Explorer
+## Bloxtax — Full-stack Technical Assignment
 
 **High-performance crypto transaction management with real-time sync and optimized financial UX.**
 
-Bloxtax is a professional-grade dashboard designed to track and manage crypto transactions across multiple networks. This project focuses on data integrity, layout stability, and a seamless user experience.
+a professional-grade dashboard designed to track and manage crypto transactions across multiple networks. This project focuses on data integrity, layout stability, and a seamless user experience.
 
 ---
 
@@ -55,3 +55,13 @@ The explorer supports a full array of blockchain metadata:
 ### 1. Install Dependencies
 ```bash
 bun install
+````
+
+### 2. Run Development Server
+```bash 
+bun dev
+```
+
+### 3. Build for Production
+```bash
+bun build
