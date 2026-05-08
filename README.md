@@ -1,73 +1,57 @@
-# Bloxtax — Full-stack Technical Assignment
+# 🚀 Bloxtax Explorer
 
-Build a single-page application that renders crypto transaction data stored in the provided SQLite database.
+**High-performance crypto transaction management with real-time sync and optimized financial UX.**
 
----
-
-## Overview
-
-Your task is to build one page containing a data table over the `Transactions` dataset. The database is already populated and shipped with this repository — no external data source or seeding step is required.
-
-You may use the included starter stack or any other stack of your choice, as long as the deliverable meets the requirements below and consumes the same dataset.
+Bloxtax is a professional-grade dashboard designed to track and manage crypto transactions across multiple networks. This project focuses on data integrity, layout stability, and a seamless user experience.
 
 ---
 
-## Requirements
+## ✨ Key Features
 
-### Required
+### 🔍 Smart Search & Filtering
+* **Advanced Debounce Strategy**: Implemented a 500ms debounce logic with immediate visual feedback (`isTyping` state), reducing server load while remaining highly responsive.
+* **URL as Source of Truth**: Full synchronization between the UI state and URL parameters. Supports browser navigation (back/forward) and deep-linking with filters applied.
 
-- **Data table** — display crypto transactions in a tabular view on a single page.
-- **Server-side pagination or infinite scroll** — data must be fetched in pages from the server; the full dataset must not be loaded into the client at once.
-- **Excel export** — provide an option to export the data (current view or full dataset) to a spreadsheet file. This must be implemented **without any third-party dependencies** — no `xlsx`, `exceljs`, `sheetjs`, or similar libraries. Write the file format directly.
-- **Responsive layout** — the page must be usable on both desktop and mobile viewports.
+### 💎 Crypto-Optimized UI
+* **Layout Stability (Anti-Jank)**: Prevents annoying layout shifts (CLS) by using stable containers and opacity transitions during data fetching.
+* **Intelligent Data Truncation**: Blockchain addresses and transaction hashes are smartly truncated with **Hover-to-Reveal** tooltips and one-click copy functionality.
+* **Semantic Coloring**: Instant visual recognition of transaction types:
+  * <span style="color: #10b981;">**Emerald**</span> for Buy/Incoming.
+  * <span style="color: #f43f5e;">**Rose**</span> for Sell/Outgoing.
+  * **Muted Gray** for Fees and metadata.
 
-### Nice to have
-
-- Column filtering.
-- Column sorting.
+### 📱 Responsive Architecture
+* **Wide-Screen Ledger**: Optimized for desktop with a `1920px` max-width terminal view.
+* **Adaptive Mobile Cards**: Automatically transforms complex tables into detailed, readable cards for mobile users.
 
 ---
 
-## Provided starter
+## 🛠 Tech Stack
 
-The repository contains an optional starter stack:
+* **Runtime**: [Bun](https://bun.sh/)
+* **Frontend**: React + Tailwind CSS
+* **Icons**: Lucide React
+* **Components**: Radix UI / Shadcn
+* **Database**: SQLite + Drizzle ORM
 
-| Layer    | Technology                                      |
-| -------- | ----------------------------------------------- |
-| Runtime  | [Bun](https://bun.sh)                           |
-| Frontend | React 19, served via `Bun.serve()` HTML imports |
-| Styling  | Tailwind CSS v4, shadcn/ui primitives           |
-| Database | SQLite via `bun:sqlite` + Drizzle ORM           |
-| Bundler  | Built into Bun — no Vite or Webpack             |
+---
 
-### Getting started
+## ⚙️ Development Highlights
 
-**Prerequisites:** Bun ≥ 1.3 — install from [bun.sh](https://bun.sh).
+### **Code Modularity**
+The project follows a "Separation of Concerns" principle. Complex UI logic is extracted into custom hooks (e.g., `useSearchDebounce`) and atomic components (e.g., `CopyButton`, `TruncatedMonoTooltip`), ensuring the codebase is clean and maintainable.
 
+### **Comprehensive Schema Coverage**
+The explorer supports a full array of blockchain metadata:
+- **Financials**: Buy/Sell amounts, Token symbols, Currencies, and Fees.
+- **Traceability**: Transaction Hashes, Block Heights, and Smart Contracts.
+- **Routing**: Sender and Receiver addresses with grouping logic.
+- **Context**: Timestamps and custom user Comments.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Install Dependencies
 ```bash
-# Install dependencies
 bun install
-
-# Start the development server (with HMR)
-bun run dev
-```
-
-The app will be available at `http://localhost:3000`.
-
-`.env` is loaded automatically by Bun. The database file is committed to the repository at `src/api/database/database.db` and is ready to use — no migration or seeding is needed to get started.
-
----
-
-## Using your own stack
-
-You may use any framework, runtime. The following constraints apply regardless of the stack chosen:
-
-- The same `database.db` file (or an equivalent import of the same data) must be used.
-- All items in the **Required** section above must be met.
-- The zero-dependency rule for Excel export applies unconditionally.
-
----
-
-## Deliverable
-
-A runnable project with a `README` that explains how to install and start it.
