@@ -1,4 +1,4 @@
-*** Bloxtax — Full-stack Technical Assignment
+## Bloxtax — Full-stack Technical Assignment
 
 **High-performance crypto transaction management with real-time sync and optimized financial UX.**
 
