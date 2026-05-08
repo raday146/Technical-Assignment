@@ -84,12 +84,12 @@ function buildFilter(
     dateTo !== undefined;
 
   if (!hasFilter) return undefined;
-
+ 
   return {
-    q: qRaw && qRaw !== "" ? qRaw : undefined,
-    method: methodRaw && methodRaw !== "" ? methodRaw : undefined,
-    network: networkRaw && networkRaw !== "" ? networkRaw : undefined,
+    q: qRaw || undefined,
+    method: methodRaw || undefined,
+    network: networkRaw || undefined,
     dateFrom,
     dateTo,
-  };
+};
 }
