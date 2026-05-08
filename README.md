@@ -55,3 +55,13 @@ The explorer supports a full array of blockchain metadata:
 ### 1. Install Dependencies
 ```bash
 bun install
+````
+
+### 2. Run Development Server
+```bash 
+bun dev
+```
+
+### 3. Build for Production
+```bash
+bun build
